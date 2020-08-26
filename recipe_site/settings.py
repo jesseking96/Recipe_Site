@@ -62,7 +62,7 @@ ROOT_URLCONF = 'recipe_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [Path(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,5 +129,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [Path(BASE_DIR,'static')]
 STATIC_ROOT = Path(BASE_DIR,'staticfiles')
 MEDIA_ROOT = Path(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'

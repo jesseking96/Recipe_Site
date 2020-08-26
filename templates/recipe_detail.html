@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{recipe.title}}{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <img class='recipe-detail-image' src="{{object.food_pic.url}}" alt="">
+  <h1>{{object.title}}</h1>
+  <p>Recipe by: {{object.author}}</p>
+  <p>Description: {{object.description}}</p>
+  <p>Prep Time: {{object.prep_time}}</p>
+  <p>Cook Time: {{object.cook_time}}</p>
+</div>
+
+  <p>Ingredients: {{object.ingredients}}</p>
+  <p>Instructions: {{object.instructions}}</p>
+{% endblock %}
