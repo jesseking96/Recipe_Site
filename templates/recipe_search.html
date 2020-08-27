@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Search: {{object_list.query}}{% endblock %}
+
+{% block content %}
+
+{% for recipe in object_list %}
+  {% include "_recipe.html" %}
+{% endfor %}
+
+{% endblock %}
