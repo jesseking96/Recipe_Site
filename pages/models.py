@@ -14,12 +14,14 @@ class Recipe(models.Model):
     prep_time = models.PositiveIntegerField()
     cook_time = models.PositiveIntegerField()
     food_pic = models.ImageField(upload_to='recipe_pics/',blank=True,default='recipe_pics/default.jpg')
-    slug = models.SlugField(unique=True,blank=True)
+    slug = models.SlugField(unique=True,null=True)
+    featured = models.BooleanField(default=False)
+    created_date = models.DateField(auto_now_add=True)
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('recipe_detail', args=[str(self.id)])
+        return reverse('recipe_detail', args=[self.slug])
 
     def save(self,*args,**kwargs):
         self.slug = slugify(self.title)

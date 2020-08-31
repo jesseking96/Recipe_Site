@@ -7,3 +7,21 @@
   height:400px;
   margin:auto;
 }
+.footer{
+  position: fixed;
+  bottom: 0;
+  background-color: grey;
+  width: 100%;
+}
+.featured-header{
+  text-align: center;
+}
+.recent-header{
+  text-align: center;
+}
+.carousel-caption{
+  background-color: grey;
+  border-radius: 20px;
+  width: 30%;
+  margin: auto;
+}

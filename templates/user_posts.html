@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Recipes by {{object_list.author}}</h1>
+<h1>Recipes by {{recipe_author}}</h1>
 {% for recipe in object_list %}
   {% include "_recipe.html" %}
 {% endfor %}
