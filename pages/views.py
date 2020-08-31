@@ -4,6 +4,7 @@ from .models import Recipe
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.db.models import Q
+from django.contrib.auth import get_user_model
 # Create your views here.
 
 class HomePageView(TemplateView):
@@ -22,6 +23,14 @@ class SearchResultsView(ListView):
     template_name='recipe_search.html'
 
     def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = Recipe.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        myquery = self.request.GET.get('q')
+        object_list = Recipe.objects.filter(Q(title__icontains=myquery) | Q(description__icontains=myquery))
         return object_list
+
+class UserRecipeView(ListView):
+    model = Recipe
+    template_name = 'user_posts.html'
+
+    def get_queryset(self):
+        query = super().get_queryset()
+        return query.filter(author__slug=self.kwargs.get("slug"))

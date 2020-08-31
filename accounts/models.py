@@ -10,6 +10,7 @@ class CustomUser(AbstractUser):
     profile_pic = models.ImageField(upload_to='profile_pics/',blank=True)
     join_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(unique=True)
+    bio = models.TextField(null=True)
 
     def __str__(self):
         return self.username
