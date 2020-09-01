@@ -1,10 +1,13 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{form.as_p}}
-  <button type="submit" name="button">Add Recipe</button>
-</form>
+<div class="jumbotron">
+  <form class = "recipe-create-form" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" name="button">Add Recipe</button>
+  </form>
+</div>
+
 
 {% endblock %}

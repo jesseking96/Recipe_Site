@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #3rd Party
+    'crispy_forms',
 
     #local
     'accounts',
@@ -124,6 +126,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [Path(BASE_DIR,'static')]

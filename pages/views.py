@@ -3,6 +3,7 @@ from django.views.generic import TemplateView,DetailView
 from .models import Recipe
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from .models import CustomUser
@@ -48,7 +49,7 @@ class UserRecipeView(ListView):
         context['recipe_author'] = CustomUser.objects.get(slug__exact=self.kwargs.get("slug"))
         return context
 
-class RecipeCreateView(CreateView):
+class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = Recipe
     fields = ["title","description","ingredients","instructions","prep_time","cook_time","food_pic"]
     template_name = "recipe_create.html"
