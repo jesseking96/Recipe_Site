@@ -16,7 +16,7 @@ class Recipe(models.Model):
     prep_time = models.PositiveIntegerField()
     cook_time = models.PositiveIntegerField()
     food_pic = models.ImageField(upload_to='recipe_pics/',blank=True,default='recipe_pics/default.jpg')
-    slug = models.SlugField(unique=True,null=True)
+    slug = models.SlugField(unique=True,null=True,blank=True)
     featured = models.BooleanField(default=False)
     created_date = models.DateField(auto_now_add=True)
     favorites = models.ManyToManyField(CustomUser,blank=True,related_name='favorite')
