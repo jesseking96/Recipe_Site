@@ -3,13 +3,15 @@ from accounts.models import CustomUser
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.template.defaultfilters import slugify
+from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 class Recipe(models.Model):
 
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE,related_name='recipes')
     title = models.CharField(max_length = 200,unique=True)
     description = models.TextField()
-    ingredients = models.TextField()
+    ingredients = models.TextField(max_length=200)
+    new_ingredients = ArrayField(models.CharField(max_length=200),blank=True,null=True)
     instructions = models.TextField()
     prep_time = models.PositiveIntegerField()
     cook_time = models.PositiveIntegerField()
@@ -17,6 +19,7 @@ class Recipe(models.Model):
     slug = models.SlugField(unique=True,null=True)
     featured = models.BooleanField(default=False)
     created_date = models.DateField(auto_now_add=True)
+    favorites = models.ManyToManyField(CustomUser,blank=True,related_name='favorite')
     def __str__(self):
         return self.title
 

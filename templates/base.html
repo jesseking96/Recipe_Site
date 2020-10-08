@@ -45,10 +45,10 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'login' %}">Log In</a>
         </li>
+        <li class='nav-item'>
+          <a class='nav-link' href="{% url 'signup' %}">Sign Up</a>
+        </li>
         {% endif %}
-      <li class='nav-item'>
-        <a class="nav-link" href="#">Disabled</a>
-      </li>
     </ul>
     <form action = "{% url 'search_results' %}" method = "GET" class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">

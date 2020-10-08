@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from environs import Env
+import django_heroku
 env = Env()
 env.read_env()
 
@@ -94,7 +95,28 @@ DATABASES = {
     }
 }
 
+AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME=env.str('AWS_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+}
+#s3 Static Settings
+STATICFILES_DIRS = [Path(BASE_DIR,'static')]
+if DEBUG == False:
+    STATIC_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'recipe_site.storage_backends.StaticStorage'
+#S3 Public Media Settings
+    MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'recipe_site.storage_backends.MediaStorage'
+else:
+    STATIC_URL = '/static/'
 
+    MEDIA_ROOT = Path(BASE_DIR,'media')
+    MEDIA_URL = '/media/'
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -127,17 +149,20 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
+SECURE_HSTS_SECONDS = env.int("DJANGO_SECURE_HSTS_SECONDS", default=2592000)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS",default=True)
+SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD",default=True)
+SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE",default=True)
+CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE",default=True)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [Path(BASE_DIR,'static')]
-STATIC_ROOT = Path(BASE_DIR,'staticfiles')
-MEDIA_ROOT = Path(BASE_DIR,'media')
-MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+django_heroku.settings(locals(),staticfiles=False)

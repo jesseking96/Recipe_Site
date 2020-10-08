@@ -7,6 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from .models import CustomUser
+from .forms import RecipeCreateForm
+from django.urls import reverse
 # Create your views here.
 
 class HomePageView(TemplateView):
@@ -50,10 +52,20 @@ class UserRecipeView(ListView):
         return context
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
+    # form_class = RecipeCreateForm
     model = Recipe
-    fields = ["title","description","ingredients","instructions","prep_time","cook_time","food_pic"]
+    fields = ["title","description","new_ingredients","instructions","prep_time","cook_time","food_pic"]
     template_name = "recipe_create.html"
 
     def form_valid(self,form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+def recipe_favorite(request,slug):
+    recipe = Recipe.objects.get(slug=slug)
+    if recipe.favorites.filter(id=request.user.id).exists():
+        recipe.favorites.remove(request.user)
+    else:
+        recipe.favorites.add(request.user)
+
+    return reverse('recipe_detail', args=[recipe.slug])

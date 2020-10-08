@@ -14,7 +14,7 @@
         {% for recipe in featured %}
           {% if recipe == featured.0 %}
           <div class="carousel-item active">
-            <img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere">
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>
@@ -22,7 +22,7 @@
           </div>
           {% else %}
           <div class="carousel-item">
-            <img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere">
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>
@@ -48,7 +48,7 @@
         {% for recipe in recent_five %}
           {% if recipe == recent_five.0 %}
           <div class="carousel-item active">
-            <img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere">
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>
@@ -56,7 +56,7 @@
           </div>
           {% else %}
           <div class="carousel-item">
-            <img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere">
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>

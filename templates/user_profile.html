@@ -3,7 +3,7 @@
 {% block title %}{{object.username}}{% endblock %}
 
 {% block content %}
-  {% if user.profile_pic.url %}
+  {% if user.profile_pic %}
   <img src="{{object.profile_pic.url}}" width=300px height=300px alt="No image to display">
   {% endif %}
   <h1>{{object.username}}</h1>
