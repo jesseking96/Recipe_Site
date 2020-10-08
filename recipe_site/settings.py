@@ -29,7 +29,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG',default=False)
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','.herokuapp.com']
 
 
 # Application definition
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     #3rd Party
     'crispy_forms',
-
+    'storages',
     #local
     'accounts',
     'pages',
@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'recipe_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'recipe_site',
-        'USER': 'postgres',
-        'PASSWORD': 'testpassword',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'recipesite',
+        'USER': 'recipesiteadminadmin',
+        'PASSWORD': env.str('DB_PASSWORD'),
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
