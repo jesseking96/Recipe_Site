@@ -2,3 +2,5 @@ django
 gunicorn
 django-crispy-forms
 django_heroku
+pillow
+environs[django]
