@@ -29,6 +29,8 @@
           </div>
           </div>
           {% endif %}
+          {% empty %}
+          <p>No currently featured recipes!</p>
         {% endfor %}
       </div>
       <a class="carousel-control-prev" href="#Featured_Controls" role="button" data-slide="prev">
@@ -45,6 +47,7 @@
     <h3 class="recent-header">Recent Recipes</h3>
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
+
         {% for recipe in recent_five %}
           {% if recipe == recent_five.0 %}
           <div class="carousel-item active">
@@ -63,6 +66,8 @@
           </div>
           </div>
           {% endif %}
+          {% empty %}
+          <p>No recent recipes!</p>
         {% endfor %}
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
