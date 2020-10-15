@@ -2,10 +2,11 @@
   margin-left: 200px;
   margin-right: 200px;
 }
-.recipe-detail-image{
-  width:500px;
-  height:400px;
-  margin:auto;
+#recipe-detail-image{
+  display: block;
+  width: 50%;
+  margin-left:auto;
+  margin-right: auto;
 }
 .footer{
   position: fixed;
@@ -22,6 +23,11 @@
 .carousel-caption{
   background-color: grey;
   border-radius: 20px;
-  width: 30%;
+  width: 75%;
   margin: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.recipe-title{
+  text-align: center;
 }

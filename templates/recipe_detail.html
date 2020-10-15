@@ -3,8 +3,8 @@
 
 {% block content %}
 <div class="jumbotron">
-  <img class='recipe-detail-image' src="{{object.food_pic.url}}" alt="">
-  <h1>{{object.title}}</h1>
+  <img id='recipe-detail-image' src="{{object.food_pic.url}}" alt="">
+  <h1 class="recipe-title">{{object.title}}</h1>
   <p>Recipe by: <a href="{% url 'user_profile' slug=object.author.slug %}">{{object.author}}</a></p>
   <p>Description: {{object.description}}</p>
   <p>Prep Time: {{object.prep_time}}</p>
@@ -12,5 +12,5 @@
   <p>Ingredients: {{object.ingredients}}</p>
   <p>Instructions: {{object.instructions}}</p>
 </div>
-  <a href="{% url 'recipe_favorite' slug=object.slug %}">Favorite</a>
+  {# <a href="{% url 'recipe_favorite' slug=object.slug %}">Favorite</a> #}
 {% endblock %}

@@ -2,6 +2,7 @@
 {% block title %}All Recipes{% endblock %}
 
 {% block content %}
+<h1 style="text-align:center;">Browse Recipes</h1>
   {% for recipe in object_list %}
     {% include "_recipe.html" %}
   {% endfor %}

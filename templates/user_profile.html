@@ -7,7 +7,7 @@
   <img src="{{object.profile_pic.url}}" width=300px height=300px alt="No image to display">
   {% endif %}
   <h1>{{object.username}}</h1>
-  <h5>Member since: {{object.date_joined}}</h5>
+  <h5>Member since: {{object.date_joined|date:"F j Y"}}</h5>
   <h5><a href="{% url 'user_recipes' slug=object.slug %}" slug=object.slug>Recipes: {{object.recipes.count}}</a></h5>
   <div class="jumbotron">
   <h5>About Me</h5>
