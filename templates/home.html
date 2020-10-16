@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="jumbotron">
-  <h1>Welcome to Recipe Site!</h1>
+  <h1 style="text-align:center;">Welcome to Recipe Site!</h1>
 </div>
 <div class="row">
   <div class="col-md-6">
@@ -14,7 +14,7 @@
         {% for recipe in featured %}
           {% if recipe == featured.0 %}
           <div class="carousel-item active">
-            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100 preview-pic" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>
@@ -22,7 +22,7 @@
           </div>
           {% else %}
           <div class="carousel-item">
-            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100 preview-pic" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>
@@ -51,7 +51,7 @@
         {% for recipe in recent_five %}
           {% if recipe == recent_five.0 %}
           <div class="carousel-item active">
-            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100 preview-pic" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>
@@ -59,7 +59,7 @@
           </div>
           {% else %}
           <div class="carousel-item">
-            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100" alt="ImageHere"></a>
+            <a href="{% url 'recipe_detail' slug=recipe.slug %}"><img src="{{recipe.food_pic.url}}" class="d-block w-100 preview-pic" alt="ImageHere"></a>
             <div class="carousel-caption d-none d-md-block">
             <h5>{{recipe.title}}</h5>
             <p>{{recipe.description|truncatechars:50}}</p>
@@ -80,6 +80,5 @@
       </a>
     </div>
   </div>
-
 </div>
 {% endblock %}
