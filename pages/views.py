@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.views.generic import TemplateView,DetailView
 from .models import Recipe
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from .models import CustomUser
 from .forms import RecipeCreateForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 # Create your views here.
 
 class HomePageView(TemplateView):
@@ -69,3 +69,13 @@ def recipe_favorite(request,slug):
         recipe.favorites.add(request.user)
 
     return reverse('recipe_detail', args=[recipe.slug])
+
+class RecipeUpdateView(LoginRequiredMixin, UpdateView):
+    model = Recipe
+    fields = ['title','description','ingredients','prep_time','cook_time','instructions','food_pic']
+    template_name = 'recipe_update.html'
+
+class RecipeDeleteView(LoginRequiredMixin, DeleteView):
+    model = Recipe
+    template_name = 'recipe_delete.html'
+    success_url = reverse_lazy('recipe_list')

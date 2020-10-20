@@ -6,5 +6,9 @@
     <h5 class='card-title'>{{recipe.title}}</h5>
     <p class='card-text'>{{recipe.description}}</p>
     <a href="{% url 'recipe_detail' recipe.slug %}">View Recipe</a>
+    {% if user == recipe.author %}
+    <a href="{% url 'recipe_update' slug=recipe.slug %}"><button type="button" class="btn btn-primary">Edit</button></a>
+    <a href="{% url 'recipe_delete' slug=recipe.slug %}"><button type="button" class="btn btn-danger">Delete</button> </a>
+    {% endif %}
   </div>
 </div>

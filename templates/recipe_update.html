@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form class="" method="post">
+  {% csrf_token %}
+  {{form|crispy}}
+  <input type="submit" class="btn btn-success" value="Update Recipe">
+</form>
+{% endblock %}

@@ -11,6 +11,10 @@
   <p>Cook Time: {{object.cook_time}}</p>
   <p>Ingredients: {{object.ingredients}}</p>
   <p>Instructions: {{object.instructions}}</p>
+  {% if user == recipe.author %}
+    <a href="{% url 'recipe_update' slug=recipe.slug %}"><button type="button" class="btn btn-primary">Edit</button></a>
+    <a href="{% url 'recipe_delete' slug=recipe.slug %}"><button type="button" class="btn btn-danger">Delete</button></a>
+  {% endif %}
 </div>
   {# <a href="{% url 'recipe_favorite' slug=object.slug %}">Favorite</a> #}
 {% endblock %}
