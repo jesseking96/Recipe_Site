@@ -3,7 +3,7 @@ from django.views.generic import TemplateView,DetailView
 from .models import Recipe
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from .models import CustomUser
@@ -70,12 +70,16 @@ def recipe_favorite(request,slug):
 
     return reverse('recipe_detail', args=[recipe.slug])
 
-class RecipeUpdateView(LoginRequiredMixin, UpdateView):
+class RecipeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    def test_func(self):
+        return self.request.user == Recipe.objects.get(slug__iexact=self.kwargs.get("slug")).author
     model = Recipe
     fields = ['title','description','ingredients','prep_time','cook_time','instructions','food_pic']
     template_name = 'recipe_update.html'
 
-class RecipeDeleteView(LoginRequiredMixin, DeleteView):
+class RecipeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    def test_func(self):
+        return self.request.user == Recipe.objects.get(slug__iexact=self.kwargs.get("slug")).author
     model = Recipe
     template_name = 'recipe_delete.html'
     success_url = reverse_lazy('recipe_list')
